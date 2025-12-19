@@ -11,13 +11,12 @@ const CreateInvoice = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState({
-        customerName: '',
+        patientName: '',
         customerPhone: '',
         customerEmail: '',
-        paymentMethod: 'cash',
+        mode: 'CASH',
         paymentStatus: 'paid',
         notes: '',
-        patientName: '', // Mapping customerName to patientName
         patientAddress: '',
         admissionDate: '',
         dischargeDate: '',
@@ -104,6 +103,11 @@ const CreateInvoice = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!formData.patientName) {
+            toast.error('Please enter patient name');
+            return;
+        }
+
         if (items.length === 0) {
             toast.error('Please add at least one product');
             return;
@@ -174,12 +178,12 @@ const CreateInvoice = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Customer Name *
+                                    Patient Name *
                                 </label>
                                 <input
                                     type="text"
-                                    value={formData.customerName}
-                                    onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
+                                    value={formData.patientName}
+                                    onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
                                     required
                                     className="input"
                                 />
@@ -207,14 +211,14 @@ const CreateInvoice = () => {
                                     Payment Method
                                 </label>
                                 <select
-                                    value={formData.paymentMethod}
-                                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                                    value={formData.mode}
+                                    onChange={(e) => setFormData({ ...formData, mode: e.target.value })}
                                     className="input"
                                 >
-                                    <option value="cash">Cash</option>
-                                    <option value="card">Card</option>
-                                    <option value="upi">UPI</option>
-                                    <option value="bank_transfer">Bank Transfer</option>
+                                    <option value="CASH">Cash</option>
+                                    <option value="CARD">Card</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="CREDIT">Credit / Bank Transfer</option>
                                 </select>
                             </div>
                         </div>
