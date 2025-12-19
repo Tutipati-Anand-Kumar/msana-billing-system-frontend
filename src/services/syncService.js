@@ -11,7 +11,10 @@ export const syncPendingInvoices = async () => {
         return { success: false, message: 'Sync in progress' };
     }
 
-    const token = sessionStorage.getItem('token');
+    const activeEmail = sessionStorage.getItem('activeAccount');
+    const accounts = JSON.parse(localStorage.getItem('msana_accounts') || '{}');
+    const token = activeEmail ? accounts[activeEmail]?.token : null;
+
     if (!token) {
         console.log('🔒 No auth token - skipping sync');
         return { success: false, message: 'No auth token' };

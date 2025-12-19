@@ -43,7 +43,7 @@ const Router = () => {
                 <Route
                     path="/*"
                     element={
-                        // <PrivateRoute>
+                        <PrivateRoute>
                             <div className="min-h-screen bg-gray-50">
                                 <Navbar />
                                 <div className="lg:pl-64 pt-16 lg:pt-0">
@@ -65,7 +65,7 @@ const Router = () => {
                                     </main>
                                 </div>
                             </div>
-                        // </PrivateRoute>
+                         </PrivateRoute>
                     }
                 />
             </Routes>

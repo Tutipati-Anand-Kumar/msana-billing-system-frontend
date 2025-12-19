@@ -12,7 +12,14 @@ const api = axios.create({
 // Add token to requests
 api.interceptors.request.use(
     (config) => {
-        const token = sessionStorage.getItem('token');
+        // Multi-account logic: 
+        // 1. sessionStorage tracks WHICH account this tab is using
+        // 2. localStorage holds the actual tokens for all accounts
+        const activeEmail = sessionStorage.getItem('activeAccount');
+        const accounts = JSON.parse(localStorage.getItem('msana_accounts') || '{}');
+
+        const token = activeEmail ? accounts[activeEmail]?.token : null;
+
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -27,11 +34,19 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response?.status === 401 && !error.config.url.includes('/auth/login')) {
-            // Only redirect if not already on login page to avoid loops
+        const isAuthError = error.response?.status === 401;
+        const isDbError = error.response?.data?.isDbError || error.response?.status === 503;
+
+        // ONLY log out if it's a real Auth error and NOT a database error
+        if (isAuthError && !isDbError && !error.config.url.includes('/auth/login')) {
             if (window.location.pathname !== '/login') {
-                sessionStorage.removeItem('token');
-                sessionStorage.removeItem('user');
+                const activeEmail = sessionStorage.getItem('activeAccount');
+                if (activeEmail) {
+                    const accounts = JSON.parse(localStorage.getItem('msana_accounts') || '{}');
+                    delete accounts[activeEmail];
+                    localStorage.setItem('msana_accounts', JSON.stringify(accounts));
+                    sessionStorage.removeItem('activeAccount');
+                }
                 window.location.href = '/login';
             }
         }
