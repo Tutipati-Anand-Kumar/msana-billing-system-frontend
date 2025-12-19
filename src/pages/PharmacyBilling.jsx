@@ -613,7 +613,7 @@ const PharmacyBilling = () => {
                         </div>
 
                         {/* Submit Buttons */}
-                        <div className="flex justify-end space-x-3">
+                        <div className="flex justify-end space-x-3 max-sm:h-16">
                             <button
                                 type="button"
                                 onClick={async () => {

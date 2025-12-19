@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import Router from './routes/Router';
 import OfflineBanner from './components/OfflineBanner';
 import { initAutoSync } from './services/syncService';
+import { AuthProvider } from './hooks/useAuth';
 import './index.css';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     }, []);
 
     return (
-        <>
+        <AuthProvider>
             <OfflineBanner />
             <Router />
             <Toaster
@@ -39,7 +40,7 @@ function App() {
                     },
                 }}
             />
-        </>
+        </AuthProvider>
     );
 }
 

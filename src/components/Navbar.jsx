@@ -58,6 +58,7 @@ const Navbar = () => {
             { name: 'Discharge Summary', path: '/discharge-summary', icon: ClipboardList },
             { name: 'Invoices', path: '/invoices', icon: FileText },
             { name: 'Reports', path: '/reports', icon: BarChart3 },
+            { name: 'Suppliers', path: '/suppliers', icon: Users },
             { name: 'Users', path: '/users', icon: Users },
             { name: 'Settings', path: '/settings', icon: SettingsIcon },
             { name: 'Audit Logs', path: '/audit-logs', icon: Shield }
@@ -66,6 +67,7 @@ const Navbar = () => {
         navItems = [
             ...commonItems,
             { name: 'Products', path: '/products', icon: Package },
+            { name: 'Suppliers', path: '/suppliers', icon: Users },
             { name: 'Pharmacy Billing', path: '/pharmacy-billing', icon: Pill },
             // { name: 'Billing', path: '/billing', icon: Receipt }, // Assuming manager might oversee general billing too
             { name: 'Invoices', path: '/invoices', icon: FileText },

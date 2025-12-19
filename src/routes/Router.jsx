@@ -14,6 +14,7 @@ import DischargeSummary from '../pages/DischargeSummary';
 import PharmacyBilling from '../pages/PharmacyBilling';
 import Settings from '../pages/Settings';
 import AuditLogs from '../pages/AuditLogs';
+import Suppliers from '../pages/Suppliers';
 import Loading from '../components/Loading';
 
 const PrivateRoute = ({ children }) => {
@@ -43,29 +44,30 @@ const Router = () => {
                 <Route
                     path="/*"
                     element={
-                        <PrivateRoute>
-                            <div className="min-h-screen bg-gray-50">
-                                <Navbar />
-                                <div className="lg:pl-64 pt-16 lg:pt-0">
-                                    <main className="min-h-screen">
-                                        <Routes>
-                                            <Route path="/dashboard" element={<Dashboard />} />
-                                            <Route path="/products" element={<Products />} />
-                                            <Route path="/billing" element={<Billing />} />
-                                            <Route path="/pharmacy-billing" element={<PharmacyBilling />} />
-                                            <Route path="/discharge-summary" element={<DischargeSummary />} />
-                                            <Route path="/invoices" element={<Invoices />} />
-                                            <Route path="/invoices/create" element={<CreateInvoice />} />
-                                            <Route path="/reports" element={<Reports />} />
-                                            <Route path="/users" element={<Users />} />
-                                            <Route path="/settings" element={<Settings />} />
-                                            <Route path="/audit-logs" element={<AuditLogs />} />
-                                            <Route path="*" element={<Navigate to="/dashboard" />} />
-                                        </Routes>
-                                    </main>
-                                </div>
+                        // <PrivateRoute>
+                        <div className="min-h-screen bg-gray-50">
+                            <Navbar />
+                            <div className="lg:pl-64 pt-16 lg:pt-0">
+                                <main className="min-h-screen">
+                                    <Routes>
+                                        <Route path="/dashboard" element={<Dashboard />} />
+                                        <Route path="/products" element={<Products />} />
+                                        <Route path="/billing" element={<Billing />} />
+                                        <Route path="/pharmacy-billing" element={<PharmacyBilling />} />
+                                        <Route path="/discharge-summary" element={<DischargeSummary />} />
+                                        <Route path="/invoices" element={<Invoices />} />
+                                        <Route path="/invoices/create" element={<CreateInvoice />} />
+                                        <Route path="/reports" element={<Reports />} />
+                                        <Route path="/users" element={<Users />} />
+                                        <Route path="/settings" element={<Settings />} />
+                                        <Route path="/audit-logs" element={<AuditLogs />} />
+                                        <Route path="/suppliers" element={<Suppliers />} />
+                                        <Route path="*" element={<Navigate to="/dashboard" />} />
+                                    </Routes>
+                                </main>
                             </div>
-                         </PrivateRoute>
+                        </div>
+                        // </PrivateRoute>
                     }
                 />
             </Routes>

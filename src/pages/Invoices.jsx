@@ -84,70 +84,72 @@ const Invoices = () => {
             </div>
 
             {/* Invoice Table */}
-            <div className="bg-white shadow overflow-hidden rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Invoice #
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Date
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Patient
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Amount
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {filteredInvoices.map((invoice) => (
-                            <tr key={invoice._id} className="hover:bg-gray-50">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary-600">
-                                    {invoice.invoiceNo}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {new Date(invoice.createdAt).toLocaleDateString()}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                    {invoice.patientName}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-                                    ₹{invoice.netPayable.toFixed(2)}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Paid
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button
-                                        onClick={() => handleDownloadPDF(invoice._id, invoice.invoiceNo)}
-                                        className="text-primary-600 hover:text-primary-900 mr-4"
-                                        title="Download PDF"
-                                    >
-                                        <Download size={18} />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        {filteredInvoices.length === 0 && (
+            <div className="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                <div className="max-h-[calc(100vh-150px)] overflow-y-auto overflow-x-auto relative">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="sticky top-0 z-10 ">
                             <tr>
-                                <td colSpan="6" className="px-6 py-10 text-center text-gray-500">
-                                    No invoices found
-                                </td>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                                    Invoice #
+                                </th>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    Date
+                                </th>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    Patient
+                                </th>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    Amount
+                                </th>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    Status
+                                </th>
+                                <th scope="col" className=" text-black  font-bold px-6 py-3 bg-gray-50 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    Actions
+                                </th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {filteredInvoices.map((invoice) => (
+                                <tr key={invoice._id} className="hover:bg-gray-50">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary-600">
+                                        {invoice.invoiceNo}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {new Date(invoice.createdAt).toLocaleDateString()}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {invoice.patientName}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                                        ₹{invoice.netPayable.toFixed(2)}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Paid
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <button
+                                            onClick={() => handleDownloadPDF(invoice._id, invoice.invoiceNo)}
+                                            className="text-primary-600 hover:text-primary-900 mr-4"
+                                            title="Download PDF"
+                                        >
+                                            <Download size={18} />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                            {filteredInvoices.length === 0 && (
+                                <tr>
+                                    <td colSpan="6" className="px-6 py-10 text-center text-gray-500">
+                                        No invoices found
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
