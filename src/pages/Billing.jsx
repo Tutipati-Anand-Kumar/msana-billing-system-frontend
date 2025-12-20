@@ -266,7 +266,7 @@ const Billing = () => {
                 </div>
 
                 {/* Bill Container */}
-                <div className="bg-white shadow-lg rounded-lg p-8 print:shadow-none print:rounded-none">
+                <div className="bg-white shadow-lg rounded-lg p-1 print:shadow-none print:rounded-none">
                     {/* Bill Header */}
                     <div className="text-center border-b-2 border-purple-600 pb-4 mb-6">
                         <h2 className="text-2xl font-bold text-purple-700">Hospital Bill Book Format</h2>

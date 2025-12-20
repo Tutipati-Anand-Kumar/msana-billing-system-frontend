@@ -8,18 +8,19 @@ import { TrendingUp, Package, DollarSign, Calendar } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Reports = () => {
+    const today = new Date().toISOString().split('T')[0];
     const [salesData, setSalesData] = useState(null);
     const [productSales, setProductSales] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [dateRange, setDateRange] = useState({
-        startDate: new Date(new Date().setDate(1)).toISOString().split('T')[0],
-        endDate: new Date().toISOString().split('T')[0],
+        startDate: new Date(new Date().setDate(new Date().getDate() - 6)).toISOString().split('T')[0],
+        endDate: today,
     });
     const [groupBy, setGroupBy] = useState('day');
 
     // Day Report State
-    const [dayReportDate, setDayReportDate] = useState(new Date().toISOString().split('T')[0]);
+    const [dayReportDate, setDayReportDate] = useState(today);
     const [dayReportData, setDayReportData] = useState(null);
 
     const fetchData = async () => {
@@ -72,6 +73,7 @@ const Reports = () => {
                             <input
                                 type="date"
                                 value={dateRange.startDate}
+                                max={today}
                                 onChange={(e) => setDateRange({ ...dateRange, startDate: e.target.value })}
                                 className="input"
                             />
@@ -81,6 +83,7 @@ const Reports = () => {
                             <input
                                 type="date"
                                 value={dateRange.endDate}
+                                max={today}
                                 onChange={(e) => setDateRange({ ...dateRange, endDate: e.target.value })}
                                 className="input"
                             />
@@ -161,6 +164,7 @@ const Reports = () => {
                             <input
                                 type="date"
                                 value={dayReportDate}
+                                max={today}
                                 onChange={(e) => setDayReportDate(e.target.value)}
                                 className="input w-auto"
                             />

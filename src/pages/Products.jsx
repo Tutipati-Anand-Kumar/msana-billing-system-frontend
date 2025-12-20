@@ -192,7 +192,7 @@ const Products = () => {
                     {/* Actions */}
                     <div className="flex-shrink-0 flex items-center gap-3">
                         {/* Bulk Import - Only for Admin & Manager */}
-                        {(user?.role === 'admin' || user?.role === 'manager') && (
+                        {(user?.role === 'admin' || user?.role === 'manager' || user?.role === 'pharmacy') && (
                             <>
                                 <input
                                     type="file"
@@ -205,14 +205,14 @@ const Products = () => {
                                     onClick={() => document.getElementById('bulk-import-input').click()}
                                     className="btn btn-secondary bg-green-500 w-full md:w-auto flex items-center justify-center space-x-2"
                                 >
-                                    <Upload size={20} />
+                                    <Upload size={20} className='rotate-180' />
                                     <span>Bulk Import</span>
                                 </button>
                             </>
                         )}
 
-                        {/* Add Product Button - Hidden for Pharmacy Staff */}
-                        {user?.role !== 'pharmacy' && (
+                        {/* Add Product Button */}
+                        {(user?.role === 'admin' || user?.role === 'manager' || user?.role === 'pharmacy') && (
                             <button
                                 onClick={() => {
                                     resetForm();
@@ -422,7 +422,7 @@ const Products = () => {
                                 onChange={(e) => setFormData({ ...formData, gstPercent: Number(e.target.value) })}
                                 className="input"
                             >
-                               <option value="0">0%</option>
+                                <option value="0">0%</option>
                                 <option value="5">5%</option>
                                 <option value="12">12%</option>
                                 <option value="18">18%</option>

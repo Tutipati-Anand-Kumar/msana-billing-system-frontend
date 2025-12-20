@@ -154,7 +154,7 @@ const Dashboard = () => {
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className="flex items-center justify-between">
-                                    <div className="flex-1">
+                                    <div className="flex-1 ">
                                         <p className="text-sm font-medium text-gray-500 mb-2 uppercase tracking-wide">
                                             {stat.title}
                                         </p>
@@ -326,12 +326,14 @@ const Dashboard = () => {
                             <div><p className="font-bold text-purple-900 text-lg">Manage Products</p><p className="text-sm text-purple-700">Inventory</p></div>
                         </div>
                     </Link>
-                    <Link to="/reports" className="group card bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200">
-                        <div className="flex items-center space-x-4">
-                            <div className="p-3 bg-green-600 rounded-xl"><TrendingUp className="text-white" size={28} /></div>
-                            <div><p className="font-bold text-green-900 text-lg">View Reports</p><p className="text-sm text-green-700">Analytics</p></div>
-                        </div>
-                    </Link>
+                    {user?.role !== 'pharmacy' && (
+                        <Link to="/reports" className="group card bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200">
+                            <div className="flex items-center space-x-4">
+                                <div className="p-3 bg-green-600 rounded-xl"><TrendingUp className="text-white" size={28} /></div>
+                                <div><p className="font-bold text-green-900 text-lg">View Reports</p><p className="text-sm text-green-700">Analytics</p></div>
+                            </div>
+                        </Link>
+                    )}
                 </div>
             </div>
 
