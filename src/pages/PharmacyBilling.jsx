@@ -288,7 +288,7 @@ const PharmacyBilling = () => {
         <div className="min-h-screen bg-gray-50 py-8">
             {/* Non-Printable Area */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 print:hidden">
-                <div className="bg-white rounded-lg shadow-md p-6">
+                <div className="bg-white rounded-lg shadow-md p-1">
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center">
                             <img src="/logo.jpg" alt="mSana" className="w-10 h-10 rounded-lg mr-3 object-cover" />
@@ -513,7 +513,7 @@ const PharmacyBilling = () => {
                                                 <option value="CASH">Cash</option>
                                                 <option value="CARD">Card</option>
                                                 <option value="UPI">UPI</option>
-                                                <option value="CREDIT">Credit</option>
+                                                {/* <option value="CREDIT">Credit</option> */}
                                             </select>
                                         </div>
                                         <div>
@@ -613,7 +613,7 @@ const PharmacyBilling = () => {
                         </div>
 
                         {/* Submit Buttons */}
-                        <div className="flex justify-end space-x-3 max-sm:h-16">
+                        <div className="flex justify-end space-x-3 max-sm:h-12  ">
                             <button
                                 type="button"
                                 onClick={async () => {
@@ -629,17 +629,17 @@ const PharmacyBilling = () => {
                                 type="button"
                                 onClick={(e) => handleSubmit(e, true)}
                                 disabled={loading || items.length === 0}
-                                className="btn btn-outline flex items-center bg-white border-primary-600 text-primary-600 hover:bg-primary-50"
+                                className="btn btn-secondary flex items-center bg-white border-gray-400 text-primary-600 hover:bg-primary-100"
                             >
-                                <Printer size={20} className="mr-2" />
+                                <Printer size={20} className="mr-2 max-sm:hidden" />
                                 {loading ? 'Saving...' : 'Save & Print'}
-                            </button>
+                            </button>   
                             <button
                                 type="submit"
                                 disabled={loading || items.length === 0}
                                 className="btn btn-primary flex items-center"
                             >
-                                <ShoppingCart size={20} className="mr-2" />
+                                <ShoppingCart size={20} className="mr-2 max-sm:hidden" />
                                 {loading ? 'Saving...' : 'Save Invoice'}
                             </button>
                         </div>

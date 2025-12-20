@@ -207,8 +207,10 @@ const Users = () => {
                                     value={formData.role}
                                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                                 >
-                                    <option value="staff">Staff</option>
+                                    <option value="pharmacy">pharmacy</option>
                                     <option value="admin">Admin</option>
+                                    <option value="manager">Manager</option>
+                                    
                                 </select>
                             </div>
 
